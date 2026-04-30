@@ -1,0 +1,12 @@
+# Local .terraform folder
+.terraform/
+
+# Terraform state files (now in S3)
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Sensitive variables
+*.tfvars
