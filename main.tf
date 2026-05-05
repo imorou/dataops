@@ -91,7 +91,7 @@ resource "aws_db_instance" "postgres_db" {
 
   tags = {
     Name       = "Fluxio-Postgres"
-    LastUpdate = "2026-05-05"
+    LastUpdate = "2026-05-05-v2"
   }
 }
 
