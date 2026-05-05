@@ -86,7 +86,7 @@ resource "aws_db_instance" "postgres_db" {
   parameter_group_name   = "default.postgres16"
   skip_final_snapshot    = true
   publicly_accessible    = false # Sécurité maximale
-  vpc_security_group_ids = [aws_security_group.db_sg.id]
+  vpc_security_group_ids = [aws_security_group.db_sg_v2.id]
   db_subnet_group_name   = aws_db_subnet_group.main_db_subnet_group.name
 
   tags = {
