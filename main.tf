@@ -72,24 +72,26 @@ resource "aws_db_subnet_group" "main_db_subnet_group" {
     Name = "Fluxio DB Subnet Group"
   }
 }
+
 # 10. RDS PostgreSQL Instance
 resource "aws_db_instance" "postgres_db" {
-  allocated_storage    = 20
-  storage_type         = "gp2"
-  engine               = "postgres"
-  engine_version       = "16"
-  instance_class       = "db.t3.micro"
-  db_name              = "fluxiodb"
-  username             = "toureadmin"
-  password             = aws_secretsmanager_secret_version.db_password_val.secret_string  # À changer plus tard via Secret Manager
-  parameter_group_name = "default.postgres16"
-  skip_final_snapshot  = true
-  publicly_accessible  = false # Sécurité maximale
+  allocated_storage      = 20
+  storage_type           = "gp2"
+  engine                 = "postgres"
+  engine_version         = "16"
+  instance_class         = "db.t3.micro"
+  db_name                = "fluxiodb"
+  username               = "toureadmin"
+  password               = aws_secretsmanager_secret_version.db_password_val.secret_string
+  parameter_group_name   = "default.postgres16"
+  skip_final_snapshot    = true
+  publicly_accessible    = false # Sécurité maximale
   vpc_security_group_ids = [aws_security_group.db_sg.id]
   db_subnet_group_name   = aws_db_subnet_group.main_db_subnet_group.name
 
   tags = {
-    Name = "Fluxio-Postgres"
+    Name       = "Fluxio-Postgres"
+    LastUpdate = "2026-05-05"
   }
 }
 
