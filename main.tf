@@ -52,23 +52,6 @@ resource "aws_route_table_association" "public_assoc" {
   route_table_id = aws_route_table.public_rt.id
 }
 
-# 7. Security Group for Database
-resource "aws_security_group" "db_sg" {
-  name        = "fluxio-db-sg"
-  description = "Allow PostgreSQL inbound traffic"
-  vpc_id      = aws_vpc.main_vpc.id
-
-  ingress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16"] # Autorise uniquement le trafic interne au VPC
-  }
-
-  tags = {
-    Name = "Fluxio-DB-SG"
-  }
-}
 # 8. Second subnet for RDS (Required for Subnet Group)
 resource "aws_subnet" "private_subnet_2" {
   vpc_id            = aws_vpc.main_vpc.id
